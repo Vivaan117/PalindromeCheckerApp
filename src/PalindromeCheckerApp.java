@@ -9,18 +9,16 @@ public class PalindromeCheckerApp {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
         for(char c : input.toCharArray()) {
-            queue.add(c);
-            stack.push(c);
+            deque.addLast(c);
         }
 
         boolean palindrome = true;
 
-        while(!queue.isEmpty()) {
-            if(!queue.remove().equals(stack.pop())) {
+        while(deque.size() > 1) {
+            if(!deque.removeFirst().equals(deque.removeLast())) {
                 palindrome = false;
                 break;
             }

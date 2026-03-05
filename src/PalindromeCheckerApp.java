@@ -9,19 +9,21 @@ public class PalindromeCheckerApp {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
-        PalindromeChecker(input);
-    }
+        char[] chars = input.toCharArray();
+        int start = 0;
+        int end = chars.length -1;
+        boolean palindrome = true;
 
-    static void PalindromeChecker(String str) {
-        String rev = "";
-        for(int i = str.length()-1; i >= 0; i--) {
-            rev += str.charAt(i);
+        while (start < end) {
+            if(chars[start] == chars[end]) {
+                palindrome = true;
+            } else {
+                palindrome = false;
+            }
+            start++;
+            end--;
         }
 
-        if(str.equals(rev)) {
-            System.out.println(str + " is Palindrome.");
-        } else {
-            System.out.println(str + " is not Palindrome.");
-        }
+        System.out.println("Is Palindrome ? : " + palindrome );
     }
 }

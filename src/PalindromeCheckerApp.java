@@ -9,16 +9,30 @@ public class PalindromeCheckerApp {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
-        boolean palindrome = true;
-        for(int i = 0; i < normalized.length() /2; i++) {
-            if(normalized.charAt(i) != normalized.charAt(normalized.length()-1-i)) {
-                palindrome = false;
-                break;
-            }
-        }
+        PalindromeChecker checker = new PalindromeChecker();
+        boolean palindrome = checker.checkPalindrome(input);
 
         System.out.println("Is Palindrome? : " + palindrome);
+    }
+}
+class PalindromeChecker {
+
+    // Exposed method
+    public boolean checkPalindrome(String input) {
+
+        if (input == null) {
+            return false;
+        }
+
+        // Normalize (remove special characters and make lowercase)
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
